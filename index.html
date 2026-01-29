@@ -1,0 +1,773 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AETOS — Community Token on Solana</title>
+    <meta
+      name="description"
+      content="AETOS is a community-driven token built on Solana. Transparent, long-term tokenomics. Fixed supply."
+    />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="AETOS — Community Token on Solana" />
+    <meta
+      property="og:description"
+      content="AETOS is a community-driven token built on Solana. Transparent, long-term tokenomics. Fixed supply."
+    />
+    <meta property="og:url" content="https://aetos-token.io/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://aetos-token.io/assets/AETOS.png" />
+
+    <!-- Twitter/X -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="AETOS — Community Token on Solana" />
+    <meta
+      name="twitter:description"
+      content="AETOS is a community-driven token built on Solana. Transparent, long-term tokenomics. Fixed supply."
+    />
+    <meta name="twitter:image" content="https://aetos-token.io/assets/AETOS.png" />
+
+    <!-- Optional favicon -->
+    <link rel="icon" href="assets/favicon.png" />
+
+   <style>
+  :root{
+    --bg:#07080b;
+    --panel:rgba(255,255,255,.06);
+    --panel2:rgba(255,255,255,.08);
+    --text:rgba(255,255,255,.92);
+    --muted:rgba(255,255,255,.68);
+    --line:rgba(255,255,255,.12);
+    --gold:#d7b15a;
+    --gold2:#f1d38a;
+    --shadow:0 16px 40px rgba(0,0,0,.45);
+    --radius:18px;
+    --radius2:26px;
+    --max:1080px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial,"Apple Color Emoji","Segoe UI Emoji";
+    background:
+      radial-gradient(1100px 700px at 50% -10%, rgba(215,177,90,.18), transparent 60%),
+      radial-gradient(900px 500px at 10% 20%, rgba(241,211,138,.10), transparent 55%),
+      radial-gradient(900px 500px at 90% 20%, rgba(241,211,138,.08), transparent 55%),
+      var(--bg);
+    color:var(--text);
+  }
+
+  a{color:inherit;text-decoration:none;}
+  a:hover{text-decoration:underline;}
+
+  .wrap{max-width:var(--max);margin:0 auto;padding:22px;}
+
+  /* HEADER */
+  header{
+    position:sticky;
+    top:0;
+    z-index:30;
+    backdrop-filter:blur(10px);
+    background:rgba(7,8,11,.70);
+    border-bottom:1px solid var(--line);
+  }
+  .header-inner{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:14px;
+    padding:14px 22px;
+    max-width:var(--max);
+    margin:0 auto;
+  }
+
+  .brand{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    min-width:190px;
+  }
+  .logo{
+    width:38px;
+    height:38px;
+    border-radius:999px;
+    background:rgba(255,255,255,.06);
+    border:1px solid var(--line);
+    display:grid;
+    place-items:center;
+    overflow:hidden;
+  }
+  .logo img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+  }
+
+  .brand-title{
+    display:flex;
+    flex-direction:column;
+    line-height:1.05;
+  }
+  .brand-title strong{
+    font-size:14px;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+  }
+  .brand-title span{
+    font-size:12px;
+    color:var(--muted);
+    letter-spacing:.02em;
+  }
+
+  /* NAV BUTTONS */
+  nav{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    flex-wrap:wrap;
+    justify-content:flex-end;
+  }
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    padding:10px 12px;
+    border-radius:999px;
+    border:1px solid var(--line);
+    background:rgba(255,255,255,.04);
+    color:var(--text);
+    font-size:13px;
+    letter-spacing:.01em;
+    transition:transform .08s ease, background .2s ease, border-color .2s ease;
+    user-select:none;
+    text-decoration:none;
+  }
+  .btn:hover{
+    background:rgba(255,255,255,.07);
+    border-color:rgba(255,255,255,.18);
+    text-decoration:none;
+  }
+  .btn:active{transform:translateY(1px);}
+
+  .btn-primary{
+    border-color:rgba(215,177,90,.42);
+    background:linear-gradient(180deg, rgba(215,177,90,.22), rgba(215,177,90,.10));
+  }
+  .btn-primary:hover{
+    border-color:rgba(241,211,138,.60);
+    background:linear-gradient(180deg, rgba(241,211,138,.26), rgba(215,177,90,.12));
+  }
+
+  /* HERO */
+  .hero{padding:44px 0 18px;}
+  .hero-grid{
+    display:grid;
+    grid-template-columns:1.2fr .8fr;
+    gap:18px;
+    align-items:stretch;
+  }
+
+  .card{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:var(--radius2);
+    box-shadow:var(--shadow);
+    overflow:hidden;
+  }
+
+  .hero-card{
+    padding:26px;
+    position:relative;
+  }
+  .hero-card:before{
+    content:"";
+    position:absolute;
+    inset:-40px -40px auto auto;
+    width:260px;
+    height:260px;
+    background:radial-gradient(circle at 30% 30%, rgba(241,211,138,.22), transparent 60%);
+    filter:blur(2px);
+    pointer-events:none;
+  }
+
+  h1{
+    margin:0 0 10px;
+    font-size:clamp(26px, 4.2vw, 44px);
+    line-height:1.05;
+    letter-spacing:-.02em;
+  }
+  .subtitle{
+    margin:0;
+    color:var(--muted);
+    font-size:15px;
+    line-height:1.55;
+    max-width:66ch;
+  }
+
+  .pill-row{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    margin-top:18px;
+  }
+  .pill{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:10px 12px;
+    border-radius:999px;
+    border:1px solid var(--line);
+    background:rgba(255,255,255,.04);
+    color:var(--muted);
+    font-size:12px;
+  }
+  .dot{
+    width:8px;
+    height:8px;
+    border-radius:999px;
+    background:var(--gold);
+    box-shadow:0 0 0 4px rgba(215,177,90,.12);
+  }
+
+  .side-card{
+    padding:22px;
+    display:grid;
+    gap:12px;
+    align-content:start;
+  }
+  .side-title{
+    font-size:13px;
+    color:var(--muted);
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    margin:0;
+  }
+
+  .kv{display:grid;gap:10px;}
+  .kv-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    gap:12px;
+    padding:12px 12px;
+    background:rgba(255,255,255,.04);
+    border:1px solid var(--line);
+    border-radius:14px;
+  }
+  .kv-row b{font-size:13px;}
+  .kv-row span{color:var(--muted);font-size:13px;}
+
+  /* SECTIONS */
+  section{padding:18px 0;}
+  .section-title{margin:0 0 10px;font-size:18px;letter-spacing:-.01em;}
+  .section-sub{
+    margin:0 0 18px;
+    color:var(--muted);
+    line-height:1.6;
+    font-size:14px;
+    max-width:85ch;
+  }
+
+  .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+
+  .box{
+    padding:18px;
+    border-radius:var(--radius);
+    background:rgba(255,255,255,.04);
+    border:1px solid var(--line);
+  }
+  .box h3{margin:0 0 8px;font-size:14px;letter-spacing:.02em;}
+  .box p{margin:0;color:var(--muted);line-height:1.6;font-size:13px;}
+
+  /* TABLE */
+  .table-wrap{
+    border-radius:var(--radius);
+    border:1px solid var(--line);
+    overflow:hidden;
+    background:rgba(255,255,255,.03);
+  }
+  table{width:100%;border-collapse:collapse;}
+  th,td{
+    padding:12px 12px;
+    border-bottom:1px solid var(--line);
+    text-align:left;
+    font-size:13px;
+    vertical-align:top;
+  }
+  th{
+    color:rgba(255,255,255,.78);
+    font-weight:600;
+    background:rgba(255,255,255,.04);
+    letter-spacing:.02em;
+  }
+  tr:last-child td{border-bottom:none;}
+
+  .tag{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:6px 10px;
+    border-radius:999px;
+    border:1px solid var(--line);
+    background:rgba(255,255,255,.04);
+    font-size:12px;
+    color:var(--muted);
+  }
+  .tag strong{color:var(--text);font-weight:600;}
+
+  /* CONTRACT */
+  .mono{
+    font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono",monospace;
+    word-break:break-all;
+    font-size:12px;
+    color:rgba(255,255,255,.86);
+  }
+  .contract-row{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    align-items:center;
+    justify-content:space-between;
+    padding:14px 14px;
+    border-radius:var(--radius);
+    border:1px solid var(--line);
+    background:rgba(255,255,255,.04);
+  }
+  .copybtn{
+    cursor:pointer;
+    border:1px solid rgba(215,177,90,.35);
+    background:rgba(215,177,90,.12);
+    padding:10px 12px;
+    border-radius:999px;
+    color:var(--text);
+    font-size:13px;
+  }
+  .copybtn:hover{
+    border-color:rgba(241,211,138,.55);
+    background:rgba(241,211,138,.14);
+  }
+
+  /* FOOTER */
+  footer{
+    margin-top:26px;
+    padding:26px 0 34px;
+    border-top:1px solid var(--line);
+    color:var(--muted);
+    font-size:12px;
+    line-height:1.6;
+  }
+  .footgrid{
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:14px;
+    align-items:start;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 920px){
+    .hero-grid{grid-template-columns:1fr;}
+    nav{justify-content:flex-start;}
+    .brand{min-width:unset;}
+  }
+
+  @media (max-width: 720px){
+    .grid-2{grid-template-columns:1fr;}
+    .grid-3{grid-template-columns:1fr;}
+    .header-inner{padding:12px 14px;}
+    .wrap{padding:16px;}
+  }
+  @media (max-width: 720px) {
+  .header-inner{
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .brand{
+    width: 100%;
+    justify-content: flex-start;
+    min-width: unset;
+  }
+
+  nav{
+    width: 100%;
+    justify-content: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* 2x2 */
+    gap: 10px;
+  }
+
+  .btn{
+    width: 100%;
+    padding: 12px 12px;
+    font-size: 13px;
+  }
+}
+@media (max-width: 720px) {
+  .table-wrap{ border-radius: 22px; }
+
+  table, thead, tbody, th, td, tr { display: block; width: 100%; }
+  thead { display: none; }
+
+  tr{
+    border-bottom: 1px solid var(--line);
+    padding: 14px 12px;
+  }
+  tr:last-child{ border-bottom: none; }
+
+  td{
+    border: none;
+    padding: 6px 0;
+    font-size: 13px;
+  }
+
+  /* Label before each cell */
+  td[data-label]::before{
+    content: attr(data-label);
+    display: block;
+    font-size: 11px;
+    letter-spacing: .10em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,.55);
+    margin-bottom: 4px;
+  }
+
+  /* Make "Category" look stronger */
+  td[data-label="Category"]{
+    font-size: 14px;
+    font-weight: 600;
+    color: rgba(255,255,255,.92);
+    padding-top: 0;
+  }
+
+  /* Tokens compact */
+  td[data-label="Tokens"]{
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+    color: rgba(255,255,255,.88);
+  }
+}
+
+</style>
+
+  </head>
+
+  <body>
+    <!--
+      ✅ LOGO
+      Place your logo file at: ./assets/aetos-logo.png
+      Optional favicon: ./assets/favicon.png
+    -->
+
+    <header>
+      <div class="header-inner">
+        <a class="brand" href="#top" aria-label="AETOS home">
+          <div class="logo" aria-hidden="true">
+            <img src="./assets/AETOS.png" alt="AETOS Logo" />
+          </div>
+          <div class="brand-title">
+            <strong>AETOS</strong>
+            <span>Community token on Solana</span>
+          </div>
+        </a>
+
+        <nav aria-label="Primary">
+          <a class="btn" href="#tokenomics">Tokenomics</a>
+          <a class="btn" href="#how-to-buy">How to buy</a>
+          <a class="btn btn-primary" href="#contract">Contract</a>
+          <a class="btn" href="#links">Links</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="top" class="wrap">
+      <!-- HERO -->
+      <div class="hero">
+        <div class="hero-grid">
+          <div class="card hero-card">
+            <h1>🦅 AETOS — A community-driven token built on Solana.</h1>
+            <p class="subtitle">
+              AETOS is designed with a simple goal: a healthy, transparent, long-term foundation powered by its
+              community. No hidden mechanisms. Fixed supply. Clear allocation.
+            </p>
+
+            <div class="pill-row" aria-label="Highlights">
+              <div class="pill"><span class="dot"></span> Fixed supply (1B)</div>
+              <div class="pill"><span class="dot"></span> Community-first</div>
+              <div class="pill"><span class="dot"></span> Team lock (12 months)</div>
+              <div class="pill"><span class="dot"></span> Transparent tokenomics</div>
+            </div>
+          </div>
+
+          <aside class="card side-card">
+            <p class="side-title">Quick facts</p>
+            <div class="kv" role="list">
+              <div class="kv-row" role="listitem">
+                <b>Official domain</b><span>aetos-token.io</span>
+              </div>
+              <div class="kv-row" role="listitem">
+                <b>Network</b><span>Solana</span>
+              </div>
+              <div class="kv-row" role="listitem">
+                <b>Total Supply</b><span>1,000,000,000 AETOS</span>
+              </div>
+              <div class="kv-row" role="listitem">
+                <b>Mintable</b><span>No</span>
+              </div>
+              <div class="kv-row" role="listitem">
+                <b>Liquidity venue</b><span>Raydium (DEX)</span>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+
+      <!-- TOKENOMICS -->
+      <section id="tokenomics">
+        <h2 class="section-title">Tokenomics</h2>
+        <p class="section-sub">
+          AETOS tokenomics are built for transparency and long-term alignment. Fixed supply, no future mint.
+          Community-first approach.
+        </p>
+
+        <div class="grid-3">
+          <div class="box">
+            <h3>🔢 Total Supply</h3>
+            <p>
+              <span class="tag"><strong>1,000,000,000</strong> AETOS</span><br /><br />
+              Fixed supply. No inflation. No additional mint.
+            </p>
+          </div>
+
+          <div class="box">
+            <h3>🧠 Community-first</h3>
+            <p>
+              The community is not a marketing argument. It is the core of AETOS.
+              Allocation is designed to avoid “team-centered” projects.
+            </p>
+          </div>
+
+          <div class="box">
+            <h3>🛡️ Long-term alignment</h3>
+            <p>
+              Team tokens are locked for 12 months, then released progressively.
+              The team grows only if the project grows.
+            </p>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top: 14px; padding: 18px;">
+          <div style="display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap;">
+            <div>
+              <div class="tag" style="margin-bottom:10px;">
+                <strong>AETOS — TOKENOMICS (Healthy & Long-term)</strong>
+              </div>
+              <div style="color:var(--muted); font-size:13px; line-height:1.6;">
+                Public reference distribution.
+              </div>
+            </div>
+          </div>
+
+          <div class="table-wrap" style="margin-top: 14px;">
+            <table aria-label="AETOS token allocation">
+              <thead>
+                <tr>
+                  <th>Category</th>
+                  <th>%</th>
+                  <th>Tokens</th>
+                  <th>Notes</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td data-label="Category">💧 Liquidity (DEX – Raydium)</td>
+                  <td data-label="%">65%</td>
+                  <td data-label="Tokens">650,000,000</td>
+                  <td data-label="Notes">Trading, price discovery, market fluidity.</td>
+                </tr>
+                <tr>
+                  <td>👥 Community</td>
+                  <td>20%</td>
+                  <td>200,000,000</td>
+                  <td>Reserved for community initiatives (progressive).</td>
+                </tr>
+                <tr>
+                  <td>🛠 Team / Founders</td>
+                  <td>10%</td>
+                  <td>100,000,000</td>
+                  <td>Locked 12 months (vesting). No usage at launch.</td>
+                </tr>
+                <tr>
+                  <td>🔒 Long-term Reserve</td>
+                  <td>5%</td>
+                  <td>50,000,000</td>
+                  <td>Security & future evolution, always communicated publicly.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div style="margin-top:12px; color:var(--muted); font-size:12px; line-height:1.6;">
+            Note: operational details (LP method, vesting address, etc.) will be published once the contract is live.
+          </div>
+        </div>
+      </section>
+
+      <!-- HOW TO BUY -->
+      <section id="how-to-buy">
+        <h2 class="section-title">How to buy</h2>
+        <p class="section-sub">
+          Use a Solana wallet and a DEX. Always verify the official contract address on this website before swapping.
+        </p>
+
+        <div class="grid-2">
+          <div class="card" style="padding: 18px;">
+            <div class="tag"><strong>Step-by-step</strong></div>
+            <ol style="margin:12px 0 0; padding-left:18px; color:var(--muted); line-height:1.75; font-size:14px;">
+              <li>Install a Solana wallet (Phantom or Solflare).</li>
+              <li>Buy SOL and send SOL to your wallet address.</li>
+              <li>Open Raydium or Jupiter.</li>
+              <li>Connect your wallet.</li>
+              <li>Paste the AETOS mint address (contract) — published below after launch.</li>
+              <li>Swap SOL → AETOS and confirm.</li>
+            </ol>
+          </div>
+
+          <div class="card" style="padding: 18px;">
+            <div class="tag"><strong>Safety</strong></div>
+            <ul style="margin:12px 0 0; padding-left:18px; color:var(--muted); line-height:1.75; font-size:14px;">
+              <li>Never share your seed phrase.</li>
+              <li>Ignore DMs offering “special links” or “bonus claims”.</li>
+              <li>Only trust the contract published on <strong>aetos-token.io</strong>.</li>
+              <li>Beware of fake tokens with similar names.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- CONTRACT -->
+      <section id="contract">
+        <h2 class="section-title">Contract</h2>
+        <p class="section-sub">
+          The AETOS mint address will be published here after deployment. Use the copy button to avoid mistakes.
+        </p>
+
+        <div class="card" style="padding: 18px;">
+          <div class="contract-row">
+            <div>
+              <div style="font-size:12px; color:var(--muted); margin-bottom:6px;">AETOS Mint Address</div>
+              <div id="mintAddress" class="mono">COMING_SOON</div>
+            </div>
+            <button class="copybtn" id="copyBtn" type="button">Copy</button>
+          </div>
+
+          <div class="grid-2" style="margin-top:12px;">
+            <div class="box">
+              <h3>Explorer</h3>
+              <p>Solscan link will be added here once the mint address is public.</p>
+            </div>
+            <div class="box">
+              <h3>DEX pairs</h3>
+              <p>Raydium / Jupiter pair links will be added here after the pool is created.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- LINKS -->
+      <section id="links">
+        <h2 class="section-title">Links</h2>
+        <p class="section-sub">Official links only. Anything else is not AETOS.</p>
+
+        <div class="grid-2">
+          <div class="card" style="padding: 18px;">
+            <div class="tag"><strong>Official</strong></div>
+            <div style="display:grid; gap:10px; margin-top:12px;">
+              <a class="btn" href="https://aetos-token.io/" target="_blank" rel="noreferrer">Website</a>
+              <!-- Replace with your real X URL later -->
+              <a class="btn" href="#" target="_blank" rel="noreferrer">X / Twitter (coming soon)</a>
+              <a class="btn" href="#" target="_blank" rel="noreferrer">Telegram (optional)</a>
+            </div>
+          </div>
+
+          <div class="card" style="padding: 18px;">
+            <div class="tag"><strong>Resources</strong></div>
+            <div style="display:grid; gap:10px; margin-top:12px;">
+              <a class="btn" href="#" target="_blank" rel="noreferrer">Raydium Pair (after launch)</a>
+              <a class="btn" href="#" target="_blank" rel="noreferrer">Jupiter (after launch)</a>
+              <a class="btn" href="#" target="_blank" rel="noreferrer">Solscan (after launch)</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <footer>
+        <div class="footgrid">
+          <div>
+            <div style="color:rgba(255,255,255,0.78); margin-bottom:6px;">
+              AETOS is a community-driven project.
+            </div>
+            <div>
+              This website is informational only and does not constitute financial advice. Crypto assets are volatile.
+              Always do your own research and manage risk responsibly.
+            </div>
+          </div>
+          <div style="text-align:right;">
+            <div class="tag"><strong>©</strong> <span id="year"></span> AETOS</div>
+          </div>
+        </div>
+      </footer>
+    </main>
+
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+
+      // Copy contract to clipboard
+      const copyBtn = document.getElementById("copyBtn");
+      const mintEl = document.getElementById("mintAddress");
+
+      function toast(msg) {
+        const t = document.createElement("div");
+        t.textContent = msg;
+        t.style.position = "fixed";
+        t.style.left = "50%";
+        t.style.bottom = "20px";
+        t.style.transform = "translateX(-50%)";
+        t.style.padding = "10px 12px";
+        t.style.borderRadius = "999px";
+        t.style.border = "1px solid rgba(255,255,255,0.14)";
+        t.style.background = "rgba(7,8,11,0.85)";
+        t.style.color = "rgba(255,255,255,0.90)";
+        t.style.backdropFilter = "blur(10px)";
+        t.style.zIndex = "999";
+        document.body.appendChild(t);
+        setTimeout(() => t.remove(), 1600);
+      }
+
+      copyBtn.addEventListener("click", async () => {
+        const text = (mintEl?.textContent || "").trim();
+        if (!text || text === "COMING_SOON") {
+          toast("Contract not published yet.");
+          return;
+        }
+        try {
+          await navigator.clipboard.writeText(text);
+          toast("Copied!");
+        } catch {
+          const ta = document.createElement("textarea");
+          ta.value = text;
+          document.body.appendChild(ta);
+          ta.select();
+          document.execCommand("copy");
+          ta.remove();
+          toast("Copied!");
+        }
+      });
+    </script>
+  </body>
+</html>
