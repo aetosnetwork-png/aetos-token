@@ -456,6 +456,30 @@
 </style>
 
   </head>
+ <script>
+  // ✅ SEUL ENDROIT À MODIFIER quand vous aurez tout
+  window.AETOS = {
+    network: "solana",
+
+    // Token mint (address du token)
+    mint: "",
+
+    // Wallets dédiés
+    wallets: {
+      liquidity: "",     // wallet qui reçoit/sert pour LP si vous en avez un dédié
+      community: "",     // wallet initiatives communautaires
+      teamVesting: "",   // wallet team/vesting (si séparé)
+      reserve: "",       // wallet réserve long terme
+      feesReceiver: ""   // (optionnel) wallet où vous récoltez certaines fees si applicable
+    },
+
+    // Explorers (liens)
+    explorer: {
+      solscanToken: "",    // ex: https://solscan.io/token/...
+      solscanAccount: ""   // ex: https://solscan.io/account/...
+    }
+  };
+</script>
 
   <body>
     <!--
@@ -681,7 +705,10 @@
         <div class="card" style="padding: 18px;">
           <div class="contract-row">
             <div>
-              <div style="font-size:12px; color:var(--muted); margin-bottom:6px;">AETOS Mint Address</div>
+              <div style="font-size:12px; color:var(--muted); margin-bottom:6px;">AETOS Mint Address :
+              The official AETOS mint address is displayed in the Contract section above.
+Any other address is not AETOS.
+</div>
               <div id="mintAddress" class="mono">5xRjKVcDjrewCj5FsmY3M9UtudgjiPy7PxPGh2bzgniM</div>
             </div>
             <button class="copybtn" id="copyBtn" type="button">Copy</button>
@@ -724,6 +751,49 @@
               <a class="btn" href="#" target="_blank" rel="noreferrer">Solscan (after launch)</a>
             </div>
           </div>
+
+          <div class="card" style="padding:18px; margin-top:14px;">
+  <h3 class="section-title" style="margin-bottom:6px;">Adresses officielles</h3>
+  <p class="section-sub" style="margin-bottom:14px;">
+    Les adresses seront affichées ici dès qu’elles sont publiées. Vérifiez toujours le domaine officiel.
+  </p>
+
+ 
+
+  <!-- Wallets dédiés -->
+  <div class="grid-2" style="margin-top:12px;">
+    <div class="box">
+      <h3>💧 Wallet Liquidité</h3>
+      <div class="mono" id="walletLiquidity">À venir</div>
+      <button class="copybtn" data-copy="wallets.liquidity" style="margin-top:10px;">Copier</button>
+    </div>
+
+    <div class="box">
+      <h3>👥 Wallet Communauté</h3>
+      <div class="mono" id="walletCommunity">À venir</div>
+      <button class="copybtn" data-copy="wallets.community" style="margin-top:10px;">Copier</button>
+    </div>
+
+    <div class="box">
+      <h3>🛠 Wallet Équipe / Vesting</h3>
+      <div class="mono" id="walletTeam">À venir</div>
+      <button class="copybtn" data-copy="wallets.teamVesting" style="margin-top:10px;">Copier</button>
+    </div>
+
+    <div class="box">
+      <h3>🔒 Wallet Réserve long terme</h3>
+      <div class="mono" id="walletReserve">À venir</div>
+      <button class="copybtn" data-copy="wallets.reserve" style="margin-top:10px;">Copier</button>
+    </div>
+  </div>
+
+  <!-- Explorers -->
+  <div style="margin-top:14px; display:flex; gap:10px; flex-wrap:wrap;">
+    <a class="btn btn-primary" id="solscanTokenBtn" href="#" target="_blank" rel="noopener">Voir sur Solscan (Token)</a>
+    <a class="btn" id="solscanAccountBtn" href="#" target="_blank" rel="noopener">Voir sur Solscan (Wallet)</a>
+  </div>
+</div>
+
         </div>
       </section>
 
@@ -769,6 +839,68 @@
         document.body.appendChild(t);
         setTimeout(() => t.remove(), 1600);
       }
+        function getPath(obj, path) {
+    return path.split(".").reduce((acc, k) => (acc && acc[k] !== undefined ? acc[k] : ""), obj);
+  }
+
+  function setText(id, value) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.textContent = value && String(value).trim() ? value : "À venir";
+  }
+
+  function setLink(id, href) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    const ok = href && String(href).trim();
+    el.href = ok ? href : "#";
+    el.style.opacity = ok ? "1" : "0.45";
+    el.style.pointerEvents = ok ? "auto" : "none";
+  }
+
+  function hydrate() {
+    const A = window.AETOS || {};
+    setText("mintValue", A.mint);
+
+    setText("walletLiquidity", A.wallets?.liquidity);
+    setText("walletCommunity", A.wallets?.community);
+    setText("walletTeam", A.wallets?.teamVesting);
+    setText("walletReserve", A.wallets?.reserve);
+
+    setLink("solscanTokenBtn", A.explorer?.solscanToken);
+    setLink("solscanAccountBtn", A.explorer?.solscanAccount);
+  }
+
+  async function copyText(text) {
+    if (!text || text === "À venir") return;
+    try {
+      await navigator.clipboard.writeText(text);
+      alert("Copié ✅");
+    } catch {
+      // fallback
+      const ta = document.createElement("textarea");
+      ta.value = text;
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand("copy");
+      ta.remove();
+      alert("Copié ✅");
+    }
+  }
+
+  document.addEventListener("click", (e) => {
+    const btn = e.target.closest("[data-copy]");
+    if (!btn) return;
+
+    const key = btn.getAttribute("data-copy");
+    const A = window.AETOS || {};
+    const value = key === "mint" ? A.mint : getPath(A, key);
+
+    copyText(value);
+  });
+
+  hydrate();
+
 
       copyBtn.addEventListener("click", async () => {
         const text = (mintEl?.textContent || "").trim();
