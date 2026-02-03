@@ -147,6 +147,11 @@
     user-select:none;
     text-decoration:none;
   }
+  .btn-disabled{
+    opacity:55;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
   .btn:hover{
     background:rgba(255,255,255,.07);
     border-color:rgba(255,255,255,.18);
@@ -475,7 +480,7 @@
 
     // Explorers (liens)
     explorer: {
-      solscanToken: "",    // ex: https://solscan.io/token/...
+      solscanToken: "https://solscan.io/token/5xRjKVcDjrewCj5FsmY3M9UtudgjiPy7PxPGh2bzgniM",    // ex: https://solscan.io/token/...
       solscanAccount: ""   // ex: https://solscan.io/account/...
     }
   };
@@ -505,6 +510,8 @@
           <a class="btn" href="#how-to-buy">How to buy</a>
           <a class="btn btn-primary" href="#contract">Contract</a>
           <a class="btn" href="#links">Links</a>
+          <a class="btn" href="#Project Disclosure">Project Disclosure</a>
+
         </nav>
       </div>
     </header>
@@ -712,6 +719,14 @@ Any other address is not AETOS.
               <div id="mintAddress" class="mono">5xRjKVcDjrewCj5FsmY3M9UtudgjiPy7PxPGh2bzgniM</div>
             </div>
             <button class="copybtn" id="copyBtn" type="button">Copy</button>
+                <a
+  class="btn secondary"
+  href="https://solscan.io/account/5xRjKVcDjrewCj5FsmY3M9UtudgjiPy7PxPGh2bzgniM"
+  target="_blank"
+  rel="noreferrer"
+>
+  View on Solscan
+</a>
           </div>
 
           <div class="grid-2" style="margin-top:12px;">
@@ -739,16 +754,16 @@ Any other address is not AETOS.
               <a class="btn" href="https://aetos-token.io/" target="_blank" rel="noreferrer">Website</a>
               <!-- Replace with your real X URL later -->
               <a class="btn" href="https://x.com/AetosToken" target="_blank" rel="noreferrer">X (twitter) Aetos - Solana</a>
-              <a class="btn" href="#" target="_blank" rel="noreferrer">Telegram (optional)</a>
+              <a class="btn" href="mailto:contact@atos-token.io">Contact Official : contact@aetos-token.io</a>
             </div>
           </div>
 
           <div class="card" style="padding: 18px;">
-            <div class="tag"><strong>Resources</strong></div>
+            <div class="tag"><strong>Resources (after launch)</strong></div>
             <div style="display:grid; gap:10px; margin-top:12px;">
-              <a class="btn" href="#" target="_blank" rel="noreferrer">Raydium Pair (after launch)</a>
-              <a class="btn" href="#" target="_blank" rel="noreferrer">Jupiter (after launch)</a>
-              <a class="btn" href="#" target="_blank" rel="noreferrer">Solscan (after launch)</a>
+              <div class="btn btn-disabled" >Raydium Pair (after launch)</div>
+              <div class="btn btn-disabled" >Jupiter (after launch)</div>
+              <div class="btn btn-disabled" >Solscan (after launch)</div>
             </div>
           </div>
 
@@ -766,35 +781,85 @@ Any other address is not AETOS.
       <h3>💧 Liquidity Wallet (Raydium)</h3>
       <div class="mono" id="walletLiquidity"></div>
       <button class="copybtn" data-copy="wallets.liquidity" style="margin-top:10px;">Copy</button>
+      <a
+  class="btn secondary"
+  href="https://solscan.io/account/HZRugspDCrgpMiWMWxJSPUXbLq297NAYZQSCvdJGuHU6"
+  target="_blank"
+  rel="noreferrer"
+>
+  View on Solscan
+</a>
+
     </div>
 
     <div class="box">
       <h3>👥 Community Wallet</h3>
       <div class="mono" id="walletCommunity"></div>
       <button class="copybtn" data-copy="wallets.community" style="margin-top:10px;">Copy</button>
+         <a
+  class="btn secondary"
+  href="https://solscan.io/account/7UR8jKFWtWQZfi8FrxS4EKwsjiHybF8EVbmkooPAx4oG"
+  target="_blank"
+  rel="noreferrer"
+>
+  View on Solscan
+</a>
     </div>
 
     <div class="box">
       <h3>🛠 Team / Vesting Wallet</h3>
       <div class="mono" id="walletTeam"></div>
       <button class="copybtn" data-copy="wallets.teamVesting" style="margin-top:10px;">Copy</button>
+         <a
+  class="btn secondary"
+  href="https://solscan.io/account/Bvpq4w2Ncrfxwnd65aB67ahz46H9yq8ycxYmhc5Mh3P8"
+  target="_blank"
+  rel="noreferrer"
+>
+  View on Solscan
+</a>
     </div>
 
     <div class="box">
       <h3>🔒 Long-term Reserve Wallet</h3>
       <div class="mono" id="walletReserve"></div>
-      <button class="copybtn" data-copy="wallets.reserve" style="margin-top:10px;">Copy</button>
+      <button class="copybtn" data-copy="wallets.reserve" style="margin-top:10px;">Copy</button>   <a
+  class="btn secondary"
+  href="https://solscan.io/account/5Vx3bcT6qvM9WLYvfpv56LgtVM46Y7GgnhUxcTurbAB1"
+  target="_blank"
+  rel="noreferrer"
+>
+  View on Solscan
+</a>
     </div>
   </div>
+</section>
+ 
+</div>
+  <section id="Project Disclosure">
+        </div>
+        <div class="card" style="padding:18px; margin-top:18px;">
+  <div class="tag"><strong>Project Disclosure</strong></div>
 
-  <!-- Explorers -->
-  <div style="margin-top:14px; display:flex; gap:10px; flex-wrap:wrap;">
-    <a class="btn btn-primary" id="solscanTokenBtn" href="#" target="_blank" rel="noopener">See on Solscan (Token)</a>
-    <a class="btn" id="solscanAccountBtn" href="#" target="_blank" rel="noopener">See on Wallet (Wallet)</a>
-  </div>
+  <p style="margin-top:12px; line-height:1.6; font-size:14px; opacity:0.9;">
+    AETOS is a community-driven token deployed on the Solana blockchain.
+    The project is experimental and currently in an early stage.
+    No guarantees, promises of returns, or financial incentives are made.
+  </p>
+
+  <p style="margin-top:8px; line-height:1.6; font-size:14px; opacity:0.9;">
+    The token has no intrinsic value claim, no equity rights, and no ownership
+    over any entity or protocol. All addresses listed above are published for
+    transparency purposes only.
+  </p>
+
+  <p style="margin-top:8px; line-height:1.6; font-size:14px; opacity:0.9;">
+    This website is informational only and does not constitute financial advice.
+    Users are responsible for their own actions and must conduct independent
+    research before interacting with the token.
+  </p>
 </div>
 
-        </div>
       </section>
 
       <footer>
